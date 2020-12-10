@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+
+  flag_service:
+    image: checkr/flagr
+    ports:
+      - 18000:18000
+    # environment:
+      # - "FLAGR_WEB_PREFIX=/foo"
