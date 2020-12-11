@@ -4,6 +4,7 @@ services:
 
   flag_service:
     image: checkr/flagr
+
     ports:
       - 18000:18000
     # environment:
