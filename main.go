@@ -3,25 +3,29 @@ package main
 import (
 	"context"
 	"fmt"
+	"os"
 
 	"github.com/antihax/optional"
 	"github.com/davecgh/go-spew/spew"
+	"github.com/joho/godotenv"
 	"github.com/theantichris/goflagr"
 )
 
-const (
-	flagrURL = "http://localhost:18000/api/v1"
-)
-
 func main() {
+	godotenv.Load()
+
+	flagrURL := os.Getenv("FLAGR_URL")
+	flagrUsername := os.Getenv("FLAGR_BASIC_AUTH_USERNAME")
+	flagrPassword := os.Getenv("FLAGR_BASIC_AUTH_PASSWORD")
+
 	config := goflagr.NewConfiguration()
 	config.BasePath = flagrURL
 	client := goflagr.NewAPIClient(config)
 
 	ctx := context.Background()
 	auth := goflagr.BasicAuth{
-		UserName: "flagr_username",
-		Password: "flagr_password",
+		UserName: flagrUsername,
+		Password: flagrPassword,
 	}
 	ctx = context.WithValue(ctx, goflagr.ContextBasicAuth, auth)
 
