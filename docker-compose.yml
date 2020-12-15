@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+
+  flag_service:
+    image: checkr/flagr
+
+    ports:
+      - 18000:18000
+    environment:
+      - "FLAGR_URL=http://localhost:18000/api/v1"
+      - "FLAGR_BASIC_AUTH_ENABLED=true"
+      - "FLAGR_BASIC_AUTH_USERNAME=flagr_username"
+      - "FLAGR_BASIC_AUTH_PASSWORD=flagr_password"
+      - "FLAGR_BASIC_AUTH_WHITELIST_PATHS="
